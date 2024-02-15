@@ -1,3 +1,6 @@
+options:
+  logging: NONE
+
 steps:
   - id: 'branch name'
     name: 'alpine'
