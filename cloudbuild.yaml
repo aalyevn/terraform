@@ -1,6 +1,3 @@
-options:
-  logging: LEGACY
-
 steps:
   - id: 'branch name'
     name: 'alpine'
