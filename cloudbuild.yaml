@@ -23,7 +23,7 @@ steps:
     args:
     - '-c'
     - |
-        terraform plan
+        terraform plan -var="name=$_NAME"
 
   - id: 'tf apply'
     name: 'hashicorp/terraform:1.0.0'
