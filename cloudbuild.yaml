@@ -1,3 +1,6 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 steps:
   - id: 'branch name'
     name: 'alpine'
@@ -9,17 +12,17 @@ steps:
        echo "$BRANCH_NAME"
        echo "*******************"
 
-  # - name: 'gcr.io/cloud-builders/gcloud'
-  #   id: 'fetch-terraform-config'
-  #   entrypoint: 'bash'
-  #   args:
-  #     - '-c'
-  #     - |
-  #       echo "Retrieving .tfvars from Secret Manager..."
-  #       gcloud secrets versions access latest --secret=terraform_config --format='get(payload.data)' | tr '_-' '/+' | base64 -d > terraform.tfvars
-  #       mkdir workspace
-  #       mv terraform.tfvars /workspace
-  #       cat /workspace/terraform.tfvars
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'fetch-terraform-config'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Retrieving .tfvars from Secret Manager..."
+        gcloud secrets versions access latest --secret=terraform_config --format='get(payload.data)' | tr '_-' '/+' | base64 -d > terraform.tfvars
+        mkdir workspace
+        mv terraform.tfvars /workspace
+        cat /workspace/terraform.tfvars
 
   # - id: 'tf init'
   #   name: 'hashicorp/terraform:1.0.0'
