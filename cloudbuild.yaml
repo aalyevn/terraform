@@ -48,7 +48,7 @@ steps:
     - |
         if [[ "$BRANCH_NAME" == "main" ]]; then
           echo "Branch is 'main', procceding with terraform apply."
-          terraform apply -var-file=/workspace/terraform.tfvars --auto-approve || exit 1
+          terraform apply -var-file=/workspace/terraform.tfvars --auto-approve
         else
           echo "Branch is not 'main', skipping terraform apply."
           exit 0
