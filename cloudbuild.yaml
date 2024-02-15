@@ -22,6 +22,7 @@ steps:
         gcloud secrets versions access latest --secret=terraform_config --format='get(payload.data)' | tr '_-' '/+' | base64 -d > terraform.tfvars
         mkdir workspace
         mv terraform.tfvars /workspace
+        exit 0
 
   - id: 'tf init'
     name: 'hashicorp/terraform:1.0.0'
