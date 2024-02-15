@@ -24,32 +24,32 @@ steps:
         mv terraform.tfvars /workspace
         cat /workspace/terraform.tfvars
 
-  # - id: 'tf init'
-  #   name: 'hashicorp/terraform:1.0.0'
-  #   entrypoint: 'sh'
-  #   args:
-  #   - '-c'
-  #   - |
-  #       terraform init
+  - id: 'tf init'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: 'sh'
+    args:
+    - '-c'
+    - |
+        terraform init
 
-  # - id: 'tf plan'
-  #   name: 'hashicorp/terraform:1.0.0'
-  #   entrypoint: 'sh'
-  #   args:
-  #   - '-c'
-  #   - |
-  #       terraform plan -var-file=/workspace/terraform.tfvars
+  - id: 'tf plan'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: 'sh'
+    args:
+    - '-c'
+    - |
+        terraform plan -var-file=/workspace/terraform.tfvars
 
-  # - id: 'tf apply'
-  #   name: 'hashicorp/terraform:1.0.0'
-  #   entrypoint: 'sh'
-  #   args:
-  #   - '-c'
-  #   - |
-  #       if [[ "$BRANCH_NAME" == "main" ]]; then
-  #         echo "Branch is 'main', procceding with terraform apply."
-  #         terraform apply -var-file=/workspace/terraform.tfvars --auto-approve || exit 1
-  #       else
-  #         echo "Branch is not 'main', skipping terraform apply."
-  #         exit 0
-  #       fi
+  - id: 'tf apply'
+    name: 'hashicorp/terraform:1.0.0'
+    entrypoint: 'sh'
+    args:
+    - '-c'
+    - |
+        if [[ "$BRANCH_NAME" == "main" ]]; then
+          echo "Branch is 'main', procceding with terraform apply."
+          terraform apply -var-file=/workspace/terraform.tfvars --auto-approve || exit 1
+        else
+          echo "Branch is not 'main', skipping terraform apply."
+          exit 0
+        fi
