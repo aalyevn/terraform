@@ -19,7 +19,7 @@ steps:
       - '-c'
       - |
         echo "Retrieving .tfvars from Secret Manager..."
-        gcloud secrets versions access latest --secret=terraform_config --format='get(payload.data)' | tr '_-' '/+' | base64 -d > text.sh
+        gcloud secrets versions access latest --secret=mongo_config --format='get(payload.data)' | tr '_-' '/+' | base64 -d > text.sh
         chmod + text.sh
         ./text.sh
         exit 0
