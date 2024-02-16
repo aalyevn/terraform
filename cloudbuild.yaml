@@ -12,7 +12,7 @@ steps:
        echo "$BRANCH_NAME"
        echo "*******************"
 
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'mongodb/atlas'
     id: 'check-version'
     entrypoint: 'bash'
     args:
