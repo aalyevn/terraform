@@ -20,8 +20,6 @@ steps:
       - |
         echo "Retrieving .tfvars from Secret Manager..."
         gcloud secrets versions access latest --secret=mongo_config --format='get(payload.data)' | tr '_-' '/+' | base64 -d > text.sh
-        chmod + text.sh
-        ./text.sh
         exit 0
 
   - name: 'mongodb/atlas'
@@ -30,6 +28,8 @@ steps:
     args:
       - '-c'
       - |
+        chmod +x text.sh
+        ./text.sh
         atlas auth login
 
   - name: 'gcr.io/cloud-builders/gcloud'
