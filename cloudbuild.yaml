@@ -30,7 +30,7 @@ steps:
     args:
       - '-c'
       - |
-        echo $MONGODB_ATLAS_PROJECT_ID
+        cat text.sh
         atlas auth login
 
   - name: 'gcr.io/cloud-builders/gcloud'
