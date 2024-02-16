@@ -13,7 +13,7 @@ steps:
        echo "*******************"
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    id: 'fetch-terraform-config'
+    id: 'check-version'
     entrypoint: 'bash'
     args:
       - '-c'
