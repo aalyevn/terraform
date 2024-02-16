@@ -22,8 +22,10 @@ steps:
         export MONGODB_ATLAS_PRIVATE_API_KEY=$_PRIVATE_API_KEY
         export MONGODB_ATLAS_PROJECT_ID=$_PROJECT_ID
         export ip=(curl 2ip.ru)
-        atlas auth login
-        atlas accessList create $ip/32 --type cidrBlock --projectId $_PROJECT_ID --output json --comment "CIDR block for servers C - F"
+        echo $MONGODB_ATLAS_PUBLIC_API_KEY
+        echo $MONGODB_ATLAS_PRIVATE_API_KEY
+        echo $MONGODB_ATLAS_PROJECT_ID
+        echo $ip
 
   - name: 'gcr.io/cloud-builders/gcloud'
     id: 'fetch-terraform-config'
