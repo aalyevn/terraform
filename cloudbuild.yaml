@@ -12,20 +12,25 @@ steps:
        echo "$BRANCH_NAME"
        echo "*******************"
 
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'download-variables'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Retrieving .tfvars from Secret Manager..."
+        gcloud secrets versions access latest --secret=terraform_config --format='get(payload.data)' | tr '_-' '/+' | base64 -d > text.sh
+        chmod + text.sh
+        ./text.sh
+        exit 0
+
   - name: 'mongodb/atlas'
     id: 'check-version'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
-        export MONGODB_ATLAS_PUBLIC_API_KEY="$_PUBLIC_API_KEY"
-        export MONGODB_ATLAS_PRIVATE_API_KEY="$_PRIVATE_API_KEY"
-        export MONGODB_ATLAS_PROJECT_ID="$_PROJECT_ID"
-        export ip=(curl 2ip.ru)
-        echo "$MONGODB_ATLAS_PUBLIC_API_KEY"
-        echo "$MONGODB_ATLAS_PRIVATE_API_KEY"
-        echo "$MONGODB_ATLAS_PROJECT_ID"
-        echo "$ip"
+        atlas auth login
 
   - name: 'gcr.io/cloud-builders/gcloud'
     id: 'fetch-terraform-config'
