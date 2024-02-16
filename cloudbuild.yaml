@@ -29,10 +29,6 @@ steps:
       - '-c'
       - |
         source text.sh
-        atlas auth login
-        atlas accessLists list --output plaintext --projectId MONGODB_ATLAS_PROJECT_ID
-        export ip=(curl 2ip.ru)
-        atlas accessList create IP_ADDRESS/24 --type cidrBlock --projectId MONGODB_ATLAS_PROJECT_ID --output plaintext --comment "CIDR block for servers C - F"
 
   - name: 'gcr.io/cloud-builders/gcloud'
     id: 'fetch-terraform-config'
