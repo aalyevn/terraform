@@ -28,8 +28,7 @@ steps:
     args:
       - '-c'
       - |
-        chmod +x text.sh
-        ./text.sh
+        source text.sh
         atlas auth login
 
   - name: 'gcr.io/cloud-builders/gcloud'
