@@ -18,8 +18,12 @@ steps:
     args:
       - '-c'
       - |
-        whoami
-        atlas -v
+        export MONGODB_ATLAS_PUBLIC_API_KEY=$PUBLIC_API_KEY
+        export MONGODB_ATLAS_PRIVATE_API_KEY=$PRIVATE_API_KEY
+        export MONGODB_ATLAS_PROJECT_ID=$PROJECT_ID
+        export ip=(curl 2ip.ru)
+        atlas auth login
+        atlas accessList create $ip/32 --type cidrBlock --projectId $PROJECT_ID --output json --comment "CIDR block for servers C - F"
 
   - name: 'gcr.io/cloud-builders/gcloud'
     id: 'fetch-terraform-config'
@@ -62,3 +66,4 @@ steps:
   #         echo "Branch is not 'main', skipping terraform apply."
   #         exit 0
   #       fi
+
