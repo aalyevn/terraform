@@ -22,9 +22,6 @@ steps:
         export MONGODB_ATLAS_PRIVATE_API_KEY=$_PRIVATE_API_KEY
         export MONGODB_ATLAS_PROJECT_ID=$_PROJECT_ID
         export ip=(curl 2ip.ru)
-        echo $MONGODB_ATLAS_PUBLIC_API_KEY
-        echo $MONGODB_ATLAS_PRIVATE_API_KEY
-        echo $MONGODB_ATLAS_PROJECT_ID
         echo $ip
 
   - name: 'gcr.io/cloud-builders/gcloud'
